@@ -1,0 +1,127 @@
+
+Main
+association Loja
+association Financeiro
+---
+---
+---
+
+Loja
+composes Item
+---
+- id: int
+- itens: HashMap<Integer, Item>
+---
++ Loja()
++ cadastraJogoDeCarta(nome:String, qntCartas: int, custoPorCarta: int): int
++ cadastraJogoDeTabuleiro(nome: String, qntPecas: int, pesoPorPeca: int, qntItensExtras: int): int
++ cadastraItemPersonalizado(descricao: String, peso: int, custo: int): int
++ alteraCustoItemPersonalizado(id: int, novoPreco: int): void
++ alteraPesoItemPersonalizado(id: int, novoPeso: int): void
++ alteraQntItem(id: int, novaQnt: int): void
++ exibirItem(id: int): void
++ getItens(idsDosItens: int[]): HashMap<Integer, Item>
+---
+
+Financeiro
+composes Compra
+---
+- id: int
+- compras: LinkedHashMap<Integer, Compra>
+- tarifa: double
+---
++ Financeiro(itens: HashMap)
++ cadastrarCompra(IdsDeItens: int[], valorPago: int): int
+- getItensDaCompra(IdsDeItens: int[]): HashMap<Integer, Item>
++ listaCompras(): int []
++ configuraTarifa(tarifa: double): void
++ exibirCompra(idDaCompra: int): String
++ isPresenteavel(idsDosItens: int[]): boolean
++ registraEmbalagem(idDaCompra: int): void
++ contarItensEmbalados(): int
+---
+
+Compra
+---
+- idsDeItens: int[]
+- tarifa: double
+- valorPago: int
+- isEmbalada: boolean
+---
++ Compra(idsDeItens: int[], valorPago: int)
+- calculaCustoTotal(): int
+- calculaLucro(): int
+- calculaValorTributado(): double
+- isCompraPresenteavel(): boolean
++ embalaCompra(): void
++ contaItensEmbalados(): int
++ toString(): String
+---
+
+
+Item
+---
+---
++ alteraQnt(novaQnt: int): void
++ calculaPeso(): int
++ calculaCusto(): int
++ isPresenteavel(): boolean
+---
+
+JogaDeCarta
+implements Item
+---
+- nome: String
+- qntCartas: int
+- custoPorPeca: int
+- unidades: int
+---
++ JogaDeCarta(nome:String, qntCartas: int, custoPorCarta: int)
++ alteraQnt(novaQnt: int): void
++ calculaPeso(): int
++ calculaCusto(): int
++ isPresenteavel(): boolean
++ hashCode(): int
++ equals(obj: Object): boolean
++ toString(): String
+---
+
+JogoDeTabuleiro
+implements Item
+---
+- nome: String
+- qntPecas: int
+- pesoPorPeca: int
+- qntItensExtras: int
+- unidades: int
+---
++ JogoDeTabuleiro(nome: String, qntPecas: int, pesoPorPeca: int, qntItensExtras: int)
++ alteraQnt(novaQnt: int): void
++ calculaPeso(): int
++ calculaCusto(): int
++ isPresenteavel(): boolean
++ hashCode(): int
++ equals(obj: Object): boolean
++ toString(): String
+---
+
+ItemPersonalizado
+implements Item
+---
+- descricao: String
+- peso: int
+- custo: int
+- unidades: int
+---
++ ItemPersonalizado(descricao: String, peso: int, custo: int)
++ alteraQnt(novaQnt: int): void
++ calculaPeso(): int
++ calculaCusto(): int
++ isPresenteavel(): boolean
++ hashCode(): int
++ equals(obj: Object): boolean
++ toString(): String
+---
+
+
+
