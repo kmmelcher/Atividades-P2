@@ -1,10 +1,5 @@
 
-Main
-association Loja
-association Financeiro
----
----
----
+
 
 Loja
 composes Item
@@ -48,7 +43,7 @@ Compra
 - valorPago: int
 - isEmbalada: boolean
 ---
-+ Compra(idsDeItens: int[], valorPago: int)
++ Compra(idsDeItens: int[], valorPago: int, tarifa : double)
 - calculaCustoTotal(): int
 - calculaLucro(): int
 - calculaValorTributado(): double
@@ -63,8 +58,8 @@ Item
 ---
 ---
 + alteraQnt(novaQnt: int): void
-+ calculaPeso(): int
-+ calculaCusto(): int
++ calculaPesoUnidade(): int
++ calculaCustoUnidade(): int
 + isPresenteavel(): boolean
 ---
 
@@ -78,8 +73,8 @@ implements Item
 ---
 + JogaDeCarta(nome:String, qntCartas: int, custoPorCarta: int)
 + alteraQnt(novaQnt: int): void
-+ calculaPeso(): int
-+ calculaCusto(): int
++ calculaPesoUnidade(): int
++ calculaCustoUnidade(): int
 + isPresenteavel(): boolean
 + hashCode(): int
 + equals(obj: Object): boolean
@@ -97,8 +92,8 @@ implements Item
 ---
 + JogoDeTabuleiro(nome: String, qntPecas: int, pesoPorPeca: int, qntItensExtras: int)
 + alteraQnt(novaQnt: int): void
-+ calculaPeso(): int
-+ calculaCusto(): int
++ calculaPesoUnidade(): int
++ calculaCustoUnidade(): int
 + isPresenteavel(): boolean
 + hashCode(): int
 + equals(obj: Object): boolean
@@ -115,8 +110,10 @@ implements Item
 ---
 + ItemPersonalizado(descricao: String, peso: int, custo: int)
 + alteraQnt(novaQnt: int): void
-+ calculaPeso(): int
-+ calculaCusto(): int
++ alterarCusto(novoCusto : int): void 
++ alterarPeso(novoPeso : int): void 
++ calculaPesoUnidade(): int
++ calculaCustoUnidade(): int
 + isPresenteavel(): boolean
 + hashCode(): int
 + equals(obj: Object): boolean
