@@ -110,8 +110,8 @@ implements Item
 ---
 + ItemPersonalizado(descricao: String, peso: int, custo: int)
 + alteraQnt(novaQnt: int): void
-+ alterarCusto(novoCusto : int): void 
-+ alterarPeso(novoPeso : int): void 
++ alteraCusto(novoCusto : int): void 
++ alteraPeso(novoPeso : int): void 
 + calculaPesoUnidade(): int
 + calculaCustoUnidade(): int
 + isPresenteavel(): boolean
