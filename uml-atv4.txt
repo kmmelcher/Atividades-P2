@@ -24,14 +24,14 @@ association Loja
 - compras: LinkedHashMap<Integer, Compra>
 - tarifa: double
 ---
-+ Financeiro(loja: Loja) 
-+ cadastrarCompra(itens: HashMap, valorPago: int): int
-+ listaCompras(): int [] 
-+ exibirCompra(idDaCompra: int): String 
++ Financeiro(loja: Loja) 
++ cadastrarCompra(idDosItens: int[], valorPago: int): int
++ listaCompras(): int [] 
++ exibirCompra(idDaCompra: int): String 
 + setTarifa(tarifa: double): void
-+ isPresenteavel(idsDosItens: int[]): boolean 
-+ registraEmbalagem(idDaCompra: int): void 
-+ contarItensEmbalados(): int 
++ isPresenteavel(idsDosItens: int[]): boolean 
++ registraEmbalagem(idDaCompra: int): void 
++ contarItensEmbalados(): int 
 ---
 
 Compra
@@ -104,8 +104,8 @@ implements Item <Interface>
 ---
 + ItemPersonalizado(descricao: String, peso: int, custo: int)
 + alteraQnt(novaQnt: int): void
-+ setCusto(novoCusto : int): void 
-+ setPeso(novoPeso : int): void 
++ setCusto(novoCusto : int): void 
++ setPeso(novoPeso : int): void 
 + calculaPesoUnidade(): int
 + calculaCustoUnidade(): int
 + isPresenteavel(): boolean
