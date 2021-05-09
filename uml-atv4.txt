@@ -1,8 +1,5 @@
-
-
-
 Loja
-composes Item
+composes Item <Interface>
 ---
 - id: int
 - itens: HashMap<Integer, Item>
@@ -14,31 +11,31 @@ composes Item
 + alteraCustoItemPersonalizado(id: int, novoPreco: int): void
 + alteraPesoItemPersonalizado(id: int, novoPeso: int): void
 + alteraQntItem(id: int, novaQnt: int): void
-+ exibirItem(id: int): void
++ exibeItem(id: int): void
 + getItens(idsDosItens: int[]): HashMap<Integer, Item>
 ---
 
 Financeiro
 composes Compra
 ---
+- loja: Loja
 - id: int
 - compras: LinkedHashMap<Integer, Compra>
 - tarifa: double
 ---
-+ Financeiro(itens: HashMap)
-+ cadastrarCompra(IdsDeItens: int[], valorPago: int): int
-- getItensDaCompra(IdsDeItens: int[]): HashMap<Integer, Item>
-+ listaCompras(): int []
-+ configuraTarifa(tarifa: double): void
-+ exibirCompra(idDaCompra: int): String
-+ isPresenteavel(idsDosItens: int[]): boolean
-+ registraEmbalagem(idDaCompra: int): void
-+ contarItensEmbalados(): int
++ Financeiro(loja: Loja) 
++ cadastrarCompra(itens: HashMap, valorPago: int): int
++ listaCompras(): int [] 
++ exibirCompra(idDaCompra: int): String 
++ setTarifa(tarifa: double): void
++ isPresenteavel(idsDosItens: int[]): boolean 
++ registraEmbalagem(idDaCompra: int): void 
++ contarItensEmbalados(): int 
 ---
 
 Compra
 ---
-- idsDeItens: int[]
+- itens: ArrayList<Item>
 - tarifa: double
 - valorPago: int
 - isEmbalada: boolean
@@ -54,7 +51,7 @@ Compra
 ---
 
 
-Item
+Item <Interface>
 ---
 ---
 + alteraQnt(novaQnt: int): void
@@ -63,26 +60,24 @@ Item
 + isPresenteavel(): boolean
 ---
 
-JogaDeCarta
-implements Item
+JogoDeCarta
+implements Item <Interface>
 ---
 - nome: String
 - qntCartas: int
 - custoPorPeca: int
 - unidades: int
 ---
-+ JogaDeCarta(nome:String, qntCartas: int, custoPorCarta: int)
++ JogoDeCarta(nome:String, qntCartas: int, custoPorCarta: int)
 + alteraQnt(novaQnt: int): void
 + calculaPesoUnidade(): int
 + calculaCustoUnidade(): int
 + isPresenteavel(): boolean
-+ hashCode(): int
-+ equals(obj: Object): boolean
 + toString(): String
 ---
 
 JogoDeTabuleiro
-implements Item
+implements Item <Interface>
 ---
 - nome: String
 - qntPecas: int
@@ -91,17 +86,15 @@ implements Item
 - unidades: int
 ---
 + JogoDeTabuleiro(nome: String, qntPecas: int, pesoPorPeca: int, qntItensExtras: int)
-+ alteraQnt(novaQnt: int): void
++ alteraQntDeUnidades(novaQnt: int): void
 + calculaPesoUnidade(): int
 + calculaCustoUnidade(): int
 + isPresenteavel(): boolean
-+ hashCode(): int
-+ equals(obj: Object): boolean
 + toString(): String
 ---
 
 ItemPersonalizado
-implements Item
+implements Item <Interface>
 ---
 - descricao: String
 - peso: int
@@ -110,15 +103,12 @@ implements Item
 ---
 + ItemPersonalizado(descricao: String, peso: int, custo: int)
 + alteraQnt(novaQnt: int): void
-+ alteraCusto(novoCusto : int): void 
-+ alteraPeso(novoPeso : int): void 
++ setCusto(novoCusto : int): void 
++ setPeso(novoPeso : int): void 
 + calculaPesoUnidade(): int
 + calculaCustoUnidade(): int
 + isPresenteavel(): boolean
-+ hashCode(): int
-+ equals(obj: Object): boolean
 + toString(): String
 ---
-
 
 
