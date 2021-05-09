@@ -17,21 +17,29 @@ composes Item <Interface>
 
 Financeiro
 composes Compra
+composes Recomendacao
 association Loja
 ---
 - loja: Loja
-- id: int
+- idDaCompra: int
+- idDaRecomendacao: int
 - compras: LinkedHashMap<Integer, Compra>
 - tarifa: double
+- recomendados: ArrayList<Recomendacao> //Guarda uma recomendacao com os 5 itens
 ---
-+ Financeiro(loja: Loja) 
++ Financeiro(loja: Loja) 
 + cadastrarCompra(idDosItens: int[], valorPago: int): int
-+ listaCompras(): int [] 
-+ exibirCompra(idDaCompra: int): String 
++ listaCompras(): int [] 
++ exibirCompra(idDaCompra: int): String 
 + setTarifa(tarifa: double): void
-+ isPresenteavel(idsDosItens: int[]): boolean 
-+ registraEmbalagem(idDaCompra: int): void 
-+ contarItensEmbalados(): int 
++ isPresenteavel(idsDosItens: int[]): boolean 
++ registraEmbalagem(idDaCompra: int): void 
++ contarItensEmbalados(): int
+- getItensMaisEmbalados(): Item[] //Usado em gerar recomedacao
++ gerarRecomendacao(): int //Retorna um id representando o indice
++ gerarRecomendacao(idItensComprados: int[]): int
++ exibeRecomendacao(idRecomendacao: int): String[]
++ comprarRecomendacao(idRecomendacao: int): int //id da compra
 ---
 
 Compra
@@ -51,6 +59,22 @@ Compra
 + toString(): String
 ---
 
+Recomendacao
+composes Comparator<Item>
+---
+- idDositens: int[]
+---
++ gera(): int
++ getIdDosItens(): int[]
++ toString(): String
+---
+
+ComparatorItemVendido
+implements Comparator<Item>
+---
+---
++ compare(item1: Item, item2: item2): int
+---
 
 Item <Interface>
 ---
@@ -59,6 +83,7 @@ Item <Interface>
 + calculaPesoUnidade(): int
 + calculaCustoUnidade(): int
 + isPresenteavel(): boolean
++ getUnidadesVendidas(): int
 ---
 
 JogoDeCarta
@@ -68,12 +93,14 @@ implements Item <Interface>
 - qntCartas: int
 - custoPorPeca: int
 - unidades: int
+- unidadesVendidas: int
 ---
 + JogoDeCarta(nome:String, qntCartas: int, custoPorCarta: int)
 + alteraQnt(novaQnt: int): void
 + calculaPesoUnidade(): int
 + calculaCustoUnidade(): int
 + isPresenteavel(): boolean
++ getUnidadesVendidas(): int
 + toString(): String
 ---
 
@@ -85,12 +112,14 @@ implements Item <Interface>
 - pesoPorPeca: int
 - qntItensExtras: int
 - unidades: int
+- unidadesVendidas: int
 ---
 + JogoDeTabuleiro(nome: String, qntPecas: int, pesoPorPeca: int, qntItensExtras: int)
 + alteraQntDeUnidades(novaQnt: int): void
 + calculaPesoUnidade(): int
 + calculaCustoUnidade(): int
 + isPresenteavel(): boolean
++ getUnidadesVendidas(): int
 + toString(): String
 ---
 
@@ -101,14 +130,16 @@ implements Item <Interface>
 - peso: int
 - custo: int
 - unidades: int
+- unidadesVendidas: int
 ---
 + ItemPersonalizado(descricao: String, peso: int, custo: int)
 + alteraQnt(novaQnt: int): void
-+ setCusto(novoCusto : int): void 
-+ setPeso(novoPeso : int): void 
++ setCusto(novoCusto : int): void 
++ setPeso(novoPeso : int): void 
 + calculaPesoUnidade(): int
 + calculaCustoUnidade(): int
 + isPresenteavel(): boolean
++ getUnidadesVendidas(): int
 + toString(): String
 ---
 
