@@ -20,18 +20,18 @@ composes Compra
 association Loja
 ---
 - loja: Loja
-- id: int
+- idDaCompra: int
 - compras: LinkedHashMap<Integer, Compra>
 - tarifa: double
 ---
 + Financeiro(loja: Loja) 
-+ cadastrarCompra(idDosItens: int[], valorPago: int): int
++ cadastraCompra(idDosItens: int[], valorPago: int): int
 + listaCompras(): int [] 
-+ exibirCompra(idDaCompra: int): String 
++ exibeCompra(idDaCompra: int): String 
 + setTarifa(tarifa: double): void
 + isPresenteavel(idsDosItens: int[]): boolean 
 + registraEmbalagem(idDaCompra: int): void 
-+ contarItensEmbalados(): int 
++ contaItensEmbalados(): int 
 ---
 
 Compra
