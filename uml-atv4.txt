@@ -28,13 +28,13 @@ association Loja
 - recomendados: ArrayList<Recomendacao> //Guarda uma recomendacao com os 5 itens
 ---
 + Financeiro(loja: Loja) 
-+ cadastrarCompra(idDosItens: int[], valorPago: int): int
++ cadastraCompra(idDosItens: int[], valorPago: int): int
 + listaCompras(): int [] 
-+ exibirCompra(idDaCompra: int): String 
++ exibeCompra(idDaCompra: int): String 
 + setTarifa(tarifa: double): void
 + isPresenteavel(idsDosItens: int[]): boolean 
 + registraEmbalagem(idDaCompra: int): void 
-+ contarItensEmbalados(): int
++ contaItensEmbalados(): int
 - getItensMaisEmbalados(): Item[] //Usado em gerar recomedacao
 + gerarRecomendacao(): int //Retorna um id representando o indice
 + gerarRecomendacao(idItensComprados: int[]): int
